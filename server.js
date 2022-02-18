@@ -111,32 +111,10 @@ io.on('connection', function(socket){
 			
 		}else{
 		   var ops=[
-			 '-i','-',
-			//'-c', 'copy', 
-			'-c:v', 'libx264', '-preset', 'ultrafast', '-tune', 'zerolatency',  // video codec config: low latency, adaptive bitrate
-			'-c:a', 'aac', '-ar', audioBitrate, '-b:a', audioEncoding, // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
-			//'-max_muxing_queue_size', '4000', 
-			//'-y', //force to overwrite
-			//'-use_wallclock_as_timestamps', '1', // used for audio sync
-			//'-async', '1', // used for audio sync
-			//'-filter_complex', 'aresample=44100', // resample audio to 44100Hz, needed if input is not 44100
-			//'-strict', 'experimental', 
-			'-bufsize', '5000',
-			
-			'-f', 'flv', socket._rtmpDestination
-			/*. original params
-			'-i','-',
-			'-c:v', 'libx264', '-preset', 'veryfast', '-tune', 'zerolatency',  // video codec config: low latency, adaptive bitrate
-			'-c:a', 'aac', '-ar', '44100', '-b:a', '64k', // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
-			'-y', //force to overwrite
-			'-use_wallclock_as_timestamps', '1', // used for audio sync
-			'-async', '1', // used for audio sync
-			//'-filter_complex', 'aresample=44100', // resample audio to 44100Hz, needed if input is not 44100
-			//'-strict', 'experimental', 
-			'-bufsize', '1000',
-			'-f', 'flv', socket._rtmpDestination
-			*/
-			
+				 '-i','-',
+				'-c:v', 'libx264', '-preset', 'ultrafast', '-tune', 'zerolatency',  // video codec config: low latency, adaptive bitrate
+				'-c:a', 'aac', '-ar', audioBitrate, '-b:a', audioEncoding, // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
+				'-bufsize', '5000', '-f', 'flv', socket._rtmpDestination
 		];
 	}
 	console.log("ops", ops);
