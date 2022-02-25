@@ -17,7 +17,7 @@ app.get('/api', (req, res) => {
 
 const io = require('socket.io')(server, {
 	cors: {
-		origin: "https://treebee-front.herokuapp.com/",
+		origin: "*",
 		methods: ["GET", "POST"]
 	}
 });
