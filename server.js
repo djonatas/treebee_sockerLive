@@ -49,9 +49,6 @@ io.on('connection', function(socket){
 		console.log(e.message, e);
 	}
 	console.log('Chegou aqui');
-
-
-
 	let ffmpeg_process, feedStream=false;
 	socket.on('config_rtmpDestination',function(m){
 
@@ -104,8 +101,6 @@ io.on('connection', function(socket){
 		} else if (audioBitrate === 44100){
 			audioEncoding = "44k";
 		}
-		console.log(audioEncoding, audioBitrate);
-		console.log('framerate on node side', framerate);
 		let ops = [];
 		if (framerate === 1){
 			ops = [
@@ -141,7 +136,6 @@ io.on('connection', function(socket){
 				'-f', 'flv', socket._rtmpDestination
 			];
 		}
-		console.log("ops", ops);
 		console.log('_rtmpDestination', socket._rtmpDestination);
 		ffmpeg_process=spawn('ffmpeg', ops);
 		console.log("ffmpeg spawned");
@@ -150,6 +144,7 @@ io.on('connection', function(socket){
 		}
 
 		ffmpeg_process.stderr.on('data',function(d){
+			console.log('data', d);
 			socket.emit('ffmpeg_stderr',''+d);
 		});
 		ffmpeg_process.on('error',function(e){
@@ -176,6 +171,7 @@ io.on('connection', function(socket){
 			console.log('nao transmitido');
 			return;
 		}
+		console.log('binarystream', m)
 		feedStream(m);
 	});
 	socket.on('disconnect', function () {
