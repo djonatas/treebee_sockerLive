@@ -196,7 +196,7 @@ io.on('error',function(e){
 	console.log('https and websocket listening on *:1437');
 });*/
 
-server.listen(80 , function(){
+server.listen(3333 , function(){
 	console.log('https and websocket listening on 80');
 });
 
