@@ -192,8 +192,12 @@ io.on('error',function(e){
 	console.log('socket.io error:'+e);
 });
 
-server.listen(process.env.PORT || 1437, function(){
+/*server.listen(process.env.PORT || 1437, function(){
 	console.log('https and websocket listening on *:1437');
+});*/
+
+server.listen(80 , function(){
+	console.log('https and websocket listening on 80');
 });
 
 process.on('uncaughtException', function(err) {
